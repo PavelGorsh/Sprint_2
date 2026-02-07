@@ -1,6 +1,4 @@
 class PointsForPlace():
-    def __init__(self):
-        pass
     
     @staticmethod
     def get_points_for_place(place):
@@ -14,8 +12,6 @@ class PointsForPlace():
         return points
 
 class PointsForMeters():
-    def __init__(self):
-        pass
 
     @staticmethod
     def get_points_for_meters(meters):
@@ -27,14 +23,9 @@ class PointsForMeters():
         return points
 
 class TotalPoints(PointsForMeters, PointsForPlace):
-    def __init__(self):
-        PointsForPlace.__init__(self)
-        PointsForMeters.__init__(self)
-        pass
 
-    @staticmethod
-    def get_total_points(meters, place):
-        total = PointsForMeters.get_points_for_meters(meters) + PointsForPlace.get_points_for_place(place)
+    def get_total_points(self, meters, place): #метод обычный, потому что статический не может обратиться к атрибутам класса
+        total = super().get_points_for_meters(meters) + super().get_points_for_place(place)
         return total
 
 points_for_place = PointsForPlace()
